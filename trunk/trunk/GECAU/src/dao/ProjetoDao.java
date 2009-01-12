@@ -44,20 +44,19 @@ public class ProjetoDao {
 
 	public List<Projeto> listar(){
 		List<Projeto> l = session.createQuery("from modelo.Projeto").list();
+		
+		
 		return l;
 		
 	}
 	
-	public List<Projeto> listarProjetosNome(String nome){
-				
-		Criteria c = session.createCriteria(Projeto.class);
-		c.add(Restrictions.like("nome", nome));
+	public Projeto listarProjetosNome(String nome){
 		
-		//Area a = (Area) c.setMaxResults(1);
-		List<Projeto> a = c.list();
-		session.close();
+		Transaction tx = session.beginTransaction();  
+		Projeto proj = (Projeto) session.createQuery("from modelo.Projeto u where u.nome=:projectName").setString("projectName", nome).uniqueResult();  
+		tx.commit();
 		
-		return a;		
+		return proj;		
 		
 	}
 	
