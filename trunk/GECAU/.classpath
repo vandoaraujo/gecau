@@ -24,5 +24,26 @@
 	<classpathentry exported="true" kind="lib" path="C:/JAVA - Aplicaçoes e Frameworks/hibernate-distribution-3.3.1.GA/lib/required/dom4j-1.6.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Vando Araujo/Desktop/log4j-1.2.15.jar"/>
 	<classpathentry exported="true" kind="lib" path="/HibernateExemplo/lib/slf4j-api.jar"/>
+	<classpathentry kind="lib" path="src/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/commons-el.jar"/>
+	<classpathentry kind="lib" path="src/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/dom4j.jar"/>
+	<classpathentry kind="lib" path="src/lib/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="src/lib/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="src/lib/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="src/lib/hibernate-core.jar"/>
+	<classpathentry kind="lib" path="src/lib/javassist-3.4.ga.jar"/>
+	<classpathentry kind="lib" path="src/lib/jess.jar"/>
+	<classpathentry kind="lib" path="src/lib/jsr94.jar"/>
+	<classpathentry kind="lib" path="src/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="src/lib/mysql-connector-java-5.1.5-bin.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-api-1.5.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-api.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-jdk14-1.5.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-log4j12-1.5.6-sources.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-nop-1.5.6.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-simple-1.5.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

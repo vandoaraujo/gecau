@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
+import modelo.Projeto;
+
 public class TelaRequisito extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -241,6 +243,17 @@ public class TelaRequisito extends JDialog {
 			projetoAtual.setBounds(new Rectangle(132, 11, 413, 28));
 		}
 		return projetoAtual;
+	}
+	
+	public void populaCombo(Projeto p)
+	{	
+		projetoAtual.removeAllItems();
+		projetoAtual.addItem(p.getNome());
+		projetoAtual.setEditable(false);
+		areaAtual.removeAllItems();
+		areaAtual.addItem(p.getArea().getNome());
+		areaAtual.setEditable(false);
+		
 	}
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"

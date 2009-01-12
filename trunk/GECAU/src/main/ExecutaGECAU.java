@@ -8,6 +8,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import visao.TelaAbrirProjeto;
 import visao.TelaCadastroProjeto;
 import visao.TelaEspecificacaoCasoUso;
 import visao.TelaManterArea;
@@ -50,6 +51,8 @@ public class ExecutaGECAU {
 		ControlaGECAU.getInstance().habilita();		
 				
 		TelaCadastroProjeto tcp = new TelaCadastroProjeto();
+		TelaAbrirProjeto tap = new TelaAbrirProjeto();
+		ControlaProjeto.getInstance().configuraTelaAbrirProjeto(tap);
 		ControlaProjeto.getInstance().configuraTela(tcp);
 				
 		TelaRequisito tr = new TelaRequisito();

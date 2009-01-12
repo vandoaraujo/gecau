@@ -11,6 +11,8 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import modelo.Projeto;
+
 import dao.HibernateUtil;
 
 //import org.apache.log4j.Logger;
@@ -25,6 +27,10 @@ public class ControlaGECAU implements ActionListener {
 	TelaPrincipal vc;
 
 	private String areaSelecionada;
+	
+	//Esta variável irá conter o projeto atual. Se ela estiver como null, indica que no momento não há
+	//nenhum projeto instanciado em memória
+	Projeto projetoAtual = null;
 	
 	/**
 	 * a Classe Exec.java que contém a main chama a referencia do ControlaGECAU, caso seja a 1 vez, instancia o objeto
@@ -74,7 +80,7 @@ public class ControlaGECAU implements ActionListener {
 		{
 				try {
 					comandoAbrirProjeto();
-				} catch (IOException e) {
+				} catch (Exception e) {
 					System.out.println("Arquivo não encontrado ou fora do formato");
 					//logger.error("Arquivo não encontrado ou fora do formato");
 				}		
@@ -89,7 +95,7 @@ public class ControlaGECAU implements ActionListener {
 		}
 		else if(comando.equals("editaAtorArea"))
 		{
-				
+			
 			comandoNovaArea();
 					
 		}
@@ -115,7 +121,7 @@ public class ControlaGECAU implements ActionListener {
 		ControlaEspecificacao.getInstance().habilitaTelaEspecificacaoCasoUso();
 	}
 
-	private void comandoAbrirProjeto() throws IOException {
+	private void comandoAbrirProjeto2() throws IOException {
 		
 			FileReader fr = null;
 			BufferedReader br = null; 
@@ -138,6 +144,13 @@ public class ControlaGECAU implements ActionListener {
 			{
 				
 			}
+		
+	}
+	
+	private void comandoAbrirProjeto()
+	{
+		
+		ControlaProjeto.getInstance().habilitaTelaAbrirProjeto();
 		
 	}
 	
@@ -164,7 +177,12 @@ public class ControlaGECAU implements ActionListener {
 	
 	private void comandoNovoRequisito() {
 	
-		ControlaRequisito.getInstance().habilitaTelaRequisito();
+		if(projetoAtual != null){
+			ControlaRequisito.getInstance().habilitaTelaRequisito(projetoAtual);
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "Não há no momento nenhum projeto aberto ou criado!");
+		}
 	
 	}
 
@@ -172,6 +190,14 @@ public class ControlaGECAU implements ActionListener {
 		
 		
 		ControlaProjeto.getInstance().habilitaTelaCadastro();
+	}
+
+	public void recebeControleProjetoAtual(Projeto p) 
+	{
+		projetoAtual = p;
+		JOptionPane.showMessageDialog(null, "projeto " + p.getNome() + " aberto com Sucesso");
+		
+		
 	}
 
 }

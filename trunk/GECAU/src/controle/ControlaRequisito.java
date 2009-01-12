@@ -3,7 +3,7 @@ package controle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import visao.TelaCadastroProjeto;
+import modelo.Projeto;
 import visao.TelaRequisito;
 
 public class ControlaRequisito implements ActionListener{
@@ -56,8 +56,9 @@ public class ControlaRequisito implements ActionListener{
 			
 	}
 
-	public void habilitaTelaRequisito() {
+	public void habilitaTelaRequisito(Projeto projeto) {
 		
+		tr.populaCombo(projeto);
 		tr.setResizable(false);
 		tr.setModal(true);
 		tr.setVisible(true);

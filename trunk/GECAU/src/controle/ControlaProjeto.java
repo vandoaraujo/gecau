@@ -4,8 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import modelo.Area;
 import modelo.Projeto;
+import visao.TelaAbrirProjeto;
 import visao.TelaCadastroProjeto;
 import visao.TelaPrincipal;
 import dao.AreaDao;
@@ -16,6 +19,8 @@ public class ControlaProjeto implements ActionListener {
 	private static ControlaProjeto singleton = null;
 	
 	private TelaCadastroProjeto tcp;
+	
+	private TelaAbrirProjeto tap;
 	
 	private TelaPrincipal tp;
 	
@@ -47,7 +52,23 @@ public class ControlaProjeto implements ActionListener {
 		List<Area> areas = AreaDao.getInstance().listar3();
 		tcp.escreveAreas(areas);
 		tcp.setModal(true);
+		tcp.setResizable(false);
 		tcp.setVisible(true);
+	}
+	
+	public void configuraTelaAbrirProjeto(TelaAbrirProjeto tapr)
+	{
+		this.tap=tapr;
+		tap.configuraOuvinte(this);
+		tap.setResizable(false);
+	}
+	
+	public void habilitaTelaAbrirProjeto()
+	{
+		List <Projeto> projeto = ProjetoDao.getInstance().listar();
+		tap.escreveProjetos(projeto);
+		tap.setModal(true);
+		tap.setVisible(true);
 	}
 
 
@@ -60,7 +81,23 @@ public class ControlaProjeto implements ActionListener {
 		{
 			novoProjeto();
 		}
+		else if(comando.equals("abrirProjeto"))
+		{
+			carregarProjeto();
+		}
 		
+	}
+
+
+	private void carregarProjeto()
+	{
+		String nomeProjeto = tap.recebeProjeto();
+		Projeto p = (Projeto) ProjetoDao.getInstance().listarProjetosNome(nomeProjeto);
+		tap.dispose();
+		JOptionPane.showMessageDialog(null,"Projeto carregado com sucesso");
+		ControlaGECAU.getInstance().recebeControleProjetoAtual(p);
+		
+
 	}
 
 
@@ -84,6 +121,9 @@ public class ControlaProjeto implements ActionListener {
 		p.setArea(areaCorreta);
 		
 		ProjetoDao.getInstance().salvar(p);
+		
+		// Passa para o controle o Projeto Atual instanciado
+		ControlaGECAU.getInstance().recebeControleProjetoAtual(p);
 		
 	}
 	
